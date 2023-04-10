@@ -62,7 +62,7 @@ public class DeliveryTest {
                 .find(exactText("Перепланировать")).click();
 
         $("div[data-test-id=success-notification] div.notification__content")
-                .shouldHave(text("Встреча успешно запланирована на " + secondMeetingDate), Duration.ofSeconds(15))
+                .shouldHave(text("Встреча успешно запла нирована на " + secondMeetingDate), Duration.ofSeconds(15))
                 .shouldBe(Condition.visible);
     }
 }
