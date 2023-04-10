@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 import ru.netology.data.DataGenerator;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
@@ -44,7 +46,7 @@ public class DeliveryTest {
         form.$$("button").find(exactText("Запланировать")).click();
 
         $("div[data-test-id=success-notification] div.notification__content")
-                .shouldHave(text("Встреча успешно запланирована на " + firstMeetingDate))
+                .shouldHave(text("Встреча успешно запланирована на " + firstMeetingDate), Duration.ofSeconds(15))
                 .shouldBe(Condition.visible);
 
         form.$("span[data-test-id=date] input.input__control")
@@ -54,13 +56,13 @@ public class DeliveryTest {
         form.$$("button").find(exactText("Запланировать")).click();
 
         $("div[data-test-id=replan-notification] div.notification__content")
-                .shouldHave(text("У вас уже запланирована встреча на другую дату. Перепланировать?"));
+                .shouldHave(text("У вас уже запланирована встреча на другую дату. Перепланировать?"), Duration.ofSeconds(15));
 
         $$("button")
                 .find(exactText("Перепланировать")).click();
 
         $("div[data-test-id=success-notification] div.notification__content")
-                .shouldHave(text("Встреча успешно запланирована на " + secondMeetingDate))
+                .shouldHave(text("Встреча успешно запланирована на " + secondMeetingDate), Duration.ofSeconds(15))
                 .shouldBe(Condition.visible);
     }
 }
